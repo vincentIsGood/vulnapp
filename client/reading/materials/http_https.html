@@ -1,0 +1,71 @@
+<html>
+    <head>
+        <style>
+            pre{
+                font-size: 16px;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>
+            HTTP vs HTTPS
+        </h2>
+        <h3>1. HTTP</h3>
+        <pre>
+            To understand HTTP vs HTTPS, consider the investigation I
+            have conducted.
+            
+            First, I load the page with normal HTTP. URL used...
+            http://127.0.0.1/vulnapp/client/
+        </pre>
+        <img src="./images/http_webpage.png" alt="">
+        <pre>
+            Next, I will record the traffic using Wireshark and see if 
+            the content can be understood or not
+        </pre>
+        <img src="./images/http_wireshark.png" alt="">
+        <pre>
+            As you can see, there are lots of traffic going on. But the one 
+            which stands out is the GET request and the 200 OK response 
+            from the web server.
+
+            Let's see what we have inside the 200 OK response.
+        </pre>
+        <img src="./images/http_wireshark_detailed.png" alt="">
+        <pre>
+            Since the html code shows as plaintext, if you post your sensitive
+            information through HTTP, hackers online are willing to take it.
+        </pre>
+
+        <h3>2. HTTPS</h3>
+        <pre>
+            What should I use then? You should use HTTPS because it is "secured"
+            as the name says it HTTP<b>S</b>. Let's see what happens if we request
+            an HTTPS page.
+        </pre>
+        <img src="./images/https_wireshark.png" alt="">
+        <pre>
+            There is nothing special here except for the TLS handshake which 
+            starts whenever "client hello" is sent. I would like to show you 
+            the plaintext html sent by the web server. But I can't because 
+            everything is encrypted.
+        </pre>
+        <img src="./images/https_wireshark2.png" alt="">
+        <pre>
+            You must be yelling out loud what is the "Application Data". Alright,
+            this is what you can see.
+        </pre>
+        <img src="./images/https_wireshark_detailed.png" alt="">
+        <pre>
+            See? They are encrypted which means HTTPS is definitely safer. 
+            Good luck trying to crack the encrypted data.
+        </pre>
+
+        <h3>Tools used:</h3>
+        <pre>
+            1. XAMPP
+            2. Wireshark
+            3. Google Chrome
+        </pre>
+    </body>
+</html>
